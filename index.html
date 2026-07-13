@@ -1,82 +1,91 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <title>D3 Test</title>
 
     <!-- D3 laden -->
-   
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
+
 <body style="padding-top:6rem">
-<h1 style="text-align:center;">Wealth and Weddingcosts</h1>
-<div  id="grafik1"></div>
-<div  id="grafik2"></div>
+    <h1 style="text-align:center;">Wealth and Weddingcosts</h1>
+    <div id="grafik1"></div>
+    <div id="grafik2"></div>
 
 
-<script>
-const weddingCostData = {
-    swift: {wedding: 50, wealth: 2000},
-    bezos: {wedding: 56, wealth: 236000},
-    american: {wedding: 0.036, wealth: 1.06}
-}
+    <script>
+        const weddingCostData = {
+            swift: {
+                wedding: 50,
+                wealth: 2000
+            },
+            bezos: {
+                wedding: 56,
+                wealth: 236000
+            },
+            american: {
+                wedding: 0.036,
+                wealth: 1.06
+            }
+        }
 
-// let's assume we want the max radius of the circles to be 100
-const scaleRadius = d3.scaleSqrt()
-    .domain([0, weddingCostData.bezos.wealth])
-    .range([0, 150]);
+        // let's assume we want the max radius of the circles to be 100
+        const scaleRadius = d3.scaleSqrt()
+            .domain([0, weddingCostData.bezos.wealth])
+            .range([0, 150]);
 
-const myChart = d3
-    .select('#grafik1')
-    .append('svg')
-    .attr('viewBox', '0 0 1000 500')
-    .style('display', 'block')
-    .style('width', '100%')
-    .style('height', 'auto')
-    .style('max-width', '1000px')
-    .style('margin', '0 auto')
-    .style('border', '1px solid #555')
-
-    
-    .style('border', '1px solid #555');
-
-
-const circlesWealth = myChart
-    .selectAll('circle')
-    .data([weddingCostData.swift.wealth, weddingCostData.bezos.wealth, weddingCostData.american.wealth])
-    .join('circle');
-
-
-// with SVG circle-specific attributes
-
-circlesWealth
-    .attr('cx', (d,i)=> (i+1)*300)
-    .attr('cy', 200)
-    .attr('r', (d) => scaleRadius(d*1.3))
-
-// this creates alternating colors based on the index of the circle
-
-circlesWealth
-    .style('fill', 'lightblue');
+        const myChart = d3
+            .select('#grafik1')
+            .append('svg')
+            .attr('viewBox', '0 0 1000 500')
+            .style('display', 'block')
+            .style('width', '100%')
+            .style('height', 'auto')
+            .style('max-width', '1000px')
+            .style('margin', '0 auto')
+            .style('border', '1px solid #555')
 
 
-myChart.append("text")
-    .attr("x", 280)
-    .attr("y", 450)
-    .text("Taylor Swift");
-
-myChart.append("text")
-    .attr("x", 560)
-    .attr("y", 450)
-    .text("Jeff Bezos");
-
-myChart.append("text")
-    .attr("x", 840)
-    .attr("y", 450)
-    .text("Average American");
+        .style('border', '1px solid #555');
 
 
-</script>
+        const circlesWealth = myChart
+            .selectAll('circle')
+            .data([weddingCostData.swift.wealth, weddingCostData.bezos.wealth, weddingCostData.american.wealth])
+            .join('circle');
+
+
+        // with SVG circle-specific attributes
+
+        circlesWealth
+            .attr('cx', (d, i) => (i + 1) * 300 - 50)
+            .attr('cy', 200)
+            .attr('r', (d) => scaleRadius(d * 1.3))
+
+        // this creates alternating colors based on the index of the circle
+
+        circlesWealth
+            .style('fill', 'lightblue');
+
+
+        myChart.append("text")
+            .attr("x", 240)
+            .attr("y", 450)
+            .text("Taylor Swift");
+
+        myChart.append("text")
+            .attr("x", 520)
+            .attr("y", 450)
+            .text("Jeff Bezos");
+
+        myChart.append("text")
+            .attr("x", 800)
+            .attr("y", 450)
+            .text("Average American");
+    </script>
 
 
 
@@ -98,4 +107,5 @@ myChart.append("text")
 
 
 </body>
+
 </html>
