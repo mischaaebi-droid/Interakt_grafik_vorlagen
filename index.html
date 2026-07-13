@@ -29,14 +29,15 @@ const scaleRadius = d3.scaleSqrt()
 const myChart = d3
     .select('#grafik1')
     .append('svg')
-    .attr('width', 1200)
-    .attr('height', 1000)
+    .attr('viewBox', '0 0 1000 500')
     .style('display', 'block')
-    .style('margin', 'auto')
-    .attr('viewBox', '0 0 1000 1000')
     .style('width', '100%')
     .style('height', 'auto')
     .style('max-width', '1000px')
+    .style('margin', '0 auto')
+    .style('border', '1px solid #555')
+
+    
     .style('border', '1px solid #555');
 
 
