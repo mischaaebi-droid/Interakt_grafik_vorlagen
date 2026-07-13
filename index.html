@@ -36,7 +36,9 @@ const myChart = d3
     .attr('viewBox', '0 0 1000 1000')
     .style('width', '100%')
     .style('height', 'auto')
-    .style('max-width', '1000px');
+    .style('max-width', '1000px')
+    .style('border', '1px solid #555');
+
 
 const circlesWealth = myChart
     .selectAll('circle')
