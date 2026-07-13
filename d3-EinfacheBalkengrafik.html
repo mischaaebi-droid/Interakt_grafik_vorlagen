@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Test</title>
+
+    <!-- D3 laden -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+<div id="chart1"></div>
+<script>
+
+s=[5,2,8,4]
+
+// SVG erstellen
+const svg = d3.select("#chart1")
+    .append("svg")
+    .attr("width", 600)
+    .attr("height", 400)
+    .attr("fill", "red")
+
+
+svg.selectAll("rect")
+    .data(s)
+    .enter()
+    .append("rect")
+    .attr("x", function(wert,nummer){return nummer*80})
+    .attr("y", function (d){return 400-10*d})
+    .attr("width", 60)
+    .attr("height", function (d, i){return d*10})
+    .attr("fill", "steelblue")
+
+</script>
+
+</body>
+</html>

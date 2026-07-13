@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Test</title>
+
+    <!-- D3 laden -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+<div style="margin-top:40px" id="chart1"></div>
+<script>
+
+s=[
+    {name:"A", wert:5},
+    {name:"B", wert:2},
+    {name:"C", wert:8},
+    {name:"D", wert:4}
+]
+
+// SVG erstellen
+const svg = d3.select("#chart1")
+    .append("svg")
+    .attr("width", 600)
+    .attr("height", 430)
+     
+   
+const y = d3.scaleLinear()
+    .domain([0, 10])
+    .range([400, 20]);
+
+const x = d3.scaleBand()
+    .domain(["A","B","C","D"])
+    .range([60,380])
+     .padding(0.1);
+   
+
+svg.selectAll("rect")
+    .data(s)
+    .enter()
+    .append("rect")
+    .attr("x", function(d,nummer){return x(d.name)})
+    
+    .attr("height", function (d){return 400-y(d.wert)})
+    .attr("width", x.bandwidth())
+    .attr("y", function (d, i){return y(d.wert)})
+    .attr("fill", "steelblue")
+
+svg.append("g")
+    .attr("transform", "translate(60,0)")
+    .call(d3.axisLeft(y));
+
+
+svg.append("g")
+    .attr("transform", "translate(0,400)")
+    .call(d3.axisBottom(x));
+
+</script>
+
+</body>
+</html>

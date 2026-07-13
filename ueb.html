@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Test</title>
+
+    <!-- D3 laden -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+<div id="grafik1"></div>
+
+
+<script>
+b=[2,6,7,3]
+
+const svg=d3.select("#grafik1")
+    .append("svg")
+    .attr("width",600)
+    .attr("height",400)
+
+svg.selectAll("rect")
+    .data(b)
+    .enter()
+    .append("rect")
+    .attr("x", function(wert,number){ return 60*number})
+    .attr("y",function(wert,number){return 400-wert*70})
+    .attr("width", 30)
+    .attr("height", function(wert,number){return wert*70})
+    .attr("fill","steelblue")
+
+svg.append("g")
+    .attr("transform", "translate(60,0)")
+    .call(d3.axisLeft(y));
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
